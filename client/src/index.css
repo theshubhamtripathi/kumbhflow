@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #0a0e1a;
+  --bg-darker: #060810;
+  --bg-surface: #0f1628;
+  --border: #1e2d4a;
+  --accent: #ff6b00;
+  --gold: #f0a500;
+  --glow: #ff8c00;
+  --text-primary: #e8edf5;
+  --text-secondary: #8899bb;
+  --green: #00e676;
+  --yellow: #ffeb3b;
+  --red: #ff1744;
+  --critical: #d500f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-darker);
+  color: var(--text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3f6a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.status-green {
+  color: var(--green);
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
+}
+
+.status-yellow {
+  color: var(--yellow);
+  text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
+}
+
+.status-red {
+  color: var(--red);
+  text-shadow: 0 0 8px rgba(255, 23, 68, 0.5);
+}
+
+.status-critical {
+  color: #d500f9;
+  text-shadow: 0 0 8px rgba(213, 0, 249, 0.6);
+}
+
+.status-closed {
+  color: #546e7a;
+}
+
+.glass-card {
+  background: rgba(15, 22, 40, 0.85);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+}
+
+.saffron-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3), 0 0 60px rgba(255, 107, 0, 0.1);
+}
+
+.critical-pulse {
+  animation: criticalPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes criticalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(30, 45, 74, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 45, 74, 0.3) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.nav-item {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-item.active {
+  border-left-color: var(--accent);
+  background: rgba(255, 107, 0, 0.1);
+  color: var(--accent);
+}
+
+.nav-item:hover {
+  background: rgba(255, 107, 0, 0.06);
+  color: var(--text-primary);
+}
+
+.metric-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.6;
+}
+
+.sector-cell {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sector-cell:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.density-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.density-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.alert-item {
+  animation: slideIn 0.3s ease-out;
+  border-left: 3px solid;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-10px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b00, #ff8f00);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff8f00, #ffab40);
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #c62828, #e53935);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #e53935, #ef5350);
+  box-shadow: 0 4px 15px rgba(198, 40, 40, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #2e7d32, #388e3c);
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.recharts-tooltip-wrapper {
+  background: rgba(10, 14, 26, 0.95) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+}
+
+.recharts-default-tooltip {
+  background: rgba(10, 14, 26, 0.95) !important;
+  border: 1px solid var(--border) !important;
+}
+
+input, select {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+select option {
+  background: #0f1628;
+  color: var(--text-primary);
+}
