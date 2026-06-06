@@ -2,6 +2,12 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { io } from 'socket.io-client';
 import axios from 'axios';
 
+// Define your live backend URL from Render
+const BACKEND_URL = 'https://kumbhflow-backend.onrender.com';
+
+// Configure Axios globally to point to your live backend domain
+axios.defaults.baseURL = BACKEND_URL;
+
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
@@ -19,7 +25,8 @@ export function AppProvider({ children }) {
   });
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000', { transports: ['websocket', 'polling'] });
+    // Updated: Point the WebSocket client to the live Render URL
+    const newSocket = io(BACKEND_URL, { transports: ['websocket', 'polling'] });
 
     newSocket.on('connect', () => {
       setIsConnected(true);
