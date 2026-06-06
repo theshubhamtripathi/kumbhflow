@@ -52,7 +52,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen }) {
             }}
           />
           <span className="text-xs" style={{ color: isConnected ? 'var(--green)' : '#ff1744', fontFamily: 'Rajdhani' }}>
-            {isConnected ? 'LIVE — PRAYAGRAJ OPS' : 'CONNECTING...'}
+            {isConnected ? 'LIVE — UJJAIN OPS' : 'CONNECTING...'}
           </span>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen }) {
           <div className="p-2 rounded-lg" style={{ background: 'var(--bg-surface)' }}>
             <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Pilgrims</p>
             <p className="text-sm font-bold font-mono" style={{ color: 'var(--gold)' }}>
-              {(liveMetrics.totalPilgrims / 1000).toFixed(0)}K
+              {((liveMetrics.totalPilgrims || 0) / 1000).toFixed(0)}K
             </p>
           </div>
           <div className="p-2 rounded-lg" style={{ background: 'var(--bg-surface)' }}>
@@ -128,7 +128,7 @@ export default function Sidebar({ activePage, setActivePage, isOpen }) {
       <div className="p-4 border-t" style={{ borderColor: 'var(--border)' }}>
         <div className="text-center">
           <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-            Mahakumbh 2025 — Prayagraj
+            Ujjain Simhastha 2028
           </p>
           <p className="text-xs font-mono mt-1" style={{ color: 'var(--accent)', opacity: 0.6 }}>
             v2.1.0 — HACKATHON BUILD

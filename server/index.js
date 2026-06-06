@@ -16,14 +16,17 @@ const { seedDatabase } = require('./middleware/seeder');
 
 const app = express();
 const server = http.createServer(app);
+
+// Updated: Allowed socket connections from any origin for production deployment
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   },
 });
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+// Updated: Enabled global CORS for API routes to support live deployment
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/api/sectors', sectorRoutes);
