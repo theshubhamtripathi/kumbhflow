@@ -67,7 +67,7 @@ async function simulateCrowdUpdate() {
           severity: 'CRITICAL',
           sectorId: sector.sectorId,
           sectorName: sector.name,
-          message: `CRITICAL: ${sector.name} at ${newDensity.toFixed(1)}% capacity. Immediate intervention required.`,
+          message: `CRITICAL ALERT: ${sector.name} density has reached ${newDensity.toFixed(1)}%. Immediate crowd control intervention required for Ujjain safety protocols.`,
           isActive: true,
           metadata: { density: newDensity, occupancy: Math.round(newOccupancy) },
         });

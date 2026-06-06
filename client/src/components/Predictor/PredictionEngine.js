@@ -6,12 +6,11 @@ import {
 } from 'recharts';
 
 const SHAHI_DATES = [
-  { date: '2025-01-13', name: 'Makar Sankranti', expected: '35L', risk: 'EXTREME' },
-  { date: '2025-01-14', name: 'Makar Sankranti (Main)', expected: '50L', risk: 'EXTREME' },
-  { date: '2025-01-29', name: 'Mauni Amavasya', expected: '1Cr', risk: 'EXTREME' },
-  { date: '2025-02-03', name: 'Basant Panchami', expected: '40L', risk: 'EXTREME' },
-  { date: '2025-02-12', name: 'Maghi Purnima', expected: '30L', risk: 'EXTREME' },
-  { date: '2025-02-26', name: 'Mahashivratri', expected: '25L', risk: 'EXTREME' },
+  { date: '2028-04-09', name: 'Chaitra Purnima (First Snan)', expected: '35L', risk: 'EXTREME' },
+  { date: '2028-04-22', name: 'Akshaya Tritiya (Main Shahi Snan)', expected: '60L', risk: 'EXTREME' },
+  { date: '2028-05-06', name: 'Vaishakha Shukla Ekadashi', expected: '45L', risk: 'EXTREME' },
+  { date: '2028-05-08', name: 'Mohini Ekadashi Snan', expected: '40L', risk: 'EXTREME' },
+  { date: '2028-05-22', name: 'Jyeshtha Purnima (Pramukh Snan)', expected: '30L', risk: 'EXTREME' },
 ];
 
 function StatusBadge({ status }) {

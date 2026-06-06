@@ -36,7 +36,7 @@ function SectorCell({ sector, onClick, isSelected }) {
         animation: (sector.status === 'CRITICAL' || sector.status === 'RED') ? 'none' : 'none',
       }}
     >
-      {(sector.status === 'CRITICAL') && (
+      {sector.status === 'CRITICAL' && (
         <div
           className="absolute inset-0 rounded-xl critical-pulse"
           style={{ background: 'rgba(213,0,249,0.06)', pointerEvents: 'none' }}
@@ -111,7 +111,7 @@ function SectorDetailPanel({ sector, onClose, onCloseSector, onOpenSector }) {
           { label: 'Occupancy', value: sector.currentOccupancy?.toLocaleString(), color: 'var(--gold)' },
           { label: 'Capacity', value: sector.capacity?.toLocaleString(), color: 'var(--text-secondary)' },
           { label: 'Inflow', value: `${sector.inflow}/min`, color: 'var(--red)' },
-          { label: 'Outflow', value: `${sector.outflow}/min覆`, color: 'var(--green)' },
+          { label: 'Outflow', value: `${sector.outflow}/min`, color: 'var(--green)' },
         ].map((item) => (
           <div key={item.label} className="p-2 rounded-lg" style={{ background: 'var(--bg-surface)' }}>
             <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{item.label}</p>
@@ -171,14 +171,14 @@ export default function SectorMap() {
     ? sectors.filter((s) => s.isClosed)
     : sectors.filter((s) => s.status === filterStatus);
 
-  const gridSectors = [...sectors].sort((a, b) => {
+  const gridSectors = [...filtered].sort((a, b) => {
     const ax = a.coordinates?.x || 0, ay = a.coordinates?.y || 0;
     const bx = b.coordinates?.x || 0, by = b.coordinates?.y || 0;
     return ay !== by ? ay - by : ax - bx;
   });
 
-  const maxX = Math.max(...sectors.map((s) => s.coordinates?.x || 0));
-  const maxY = Math.max(...sectors.map((s) => s.coordinates?.y || 0));
+  const maxX = sectors.length > 0 ? Math.max(...sectors.map((s) => s.coordinates?.x || 0)) : 1;
+  const maxY = sectors.length > 0 ? Math.max(...sectors.map((s) => s.coordinates?.y || 0)) : 1;
 
   const gridCells = [];
   for (let y = 1; y <= maxY; y++) {
@@ -193,7 +193,7 @@ export default function SectorMap() {
       <div className="glass-card p-4">
         <div className="flex flex-wrap items-center gap-3 mb-2">
           <h2 className="font-display font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
-            MAHAKUMBH SECTOR HEATMAP — PRAYAGRAJ
+            MAHAKUMBH SECTOR HEATMAP — UJJAIN 2028
           </h2>
           <div className="flex-1" />
           {['ALL', 'GREEN', 'YELLOW', 'RED', 'CRITICAL', 'CLOSED'].map((status) => (
@@ -265,12 +265,12 @@ export default function SectorMap() {
           <div className="mt-4 flex items-center gap-4">
             <div className="flex-1 p-3 rounded-lg" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>North ↑ Allahabad City</span>
+                <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>North ↑ Mangalnath / Mullapura</span>
               </div>
               <div className="flex items-center justify-between text-xs" style={{ color: 'var(--text-secondary)' }}>
-                <span>West ← Jhunsi</span>
-                <span className="font-bold" style={{ color: 'var(--gold)' }}>TRIVENI SANGAM ⊕</span>
-                <span>East → Naini →</span>
+                <span>West ← Dutt Akhara Zone</span>
+                <span className="font-bold" style={{ color: 'var(--gold)' }}>RAM GHAT CENTRAL AXIS ⛵</span>
+                <span>East → Ujjain Jn / Dewas Road →</span>
               </div>
             </div>
           </div>
@@ -317,19 +317,19 @@ export default function SectorMap() {
               <div className="flex justify-between">
                 <span style={{ color: 'var(--text-secondary)' }}>Total Capacity:</span>
                 <span className="font-mono" style={{ color: 'var(--gold)' }}>
-                  {(sectors.reduce((s, sec) => s + sec.capacity, 0) / 1000).toFixed(0)}K
+                  {sectors.length > 0 ? (sectors.reduce((s, sec) => s + sec.capacity, 0) / 1000).toFixed(0) : 0}K
                 </span>
               </div>
               <div className="flex justify-between">
                 <span style={{ color: 'var(--text-secondary)' }}>Current Load:</span>
                 <span className="font-mono" style={{ color: 'var(--accent)' }}>
-                  {(sectors.reduce((s, sec) => s + sec.currentOccupancy, 0) / 1000).toFixed(0)}K
+                  {sectors.length > 0 ? (sectors.reduce((s, sec) => s + sec.currentOccupancy, 0) / 1000).toFixed(0) : 0}K
                 </span>
               </div>
               <div className="flex justify-between">
                 <span style={{ color: 'var(--text-secondary)' }}>Net Inflow:</span>
                 <span className="font-mono" style={{ color: 'var(--red)' }}>
-                  +{(sectors.reduce((s, sec) => s + (sec.inflow - sec.outflow), 0)).toLocaleString()}/min
+                  +{sectors.length > 0 ? (sectors.reduce((s, sec) => s + (sec.inflow - sec.outflow), 0)).toLocaleString() : 0}/min
                 </span>
               </div>
             </div>
